@@ -1,0 +1,44 @@
+.header-container {
+  margin: 0 auto;
+  border-bottom-style: solid;
+  font-family: Poppins, sans-serif;
+  background-color: #78d4da;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-row {
+  display: flex;
+}
+
+.column-full,
+.column-one-third {
+  width: 100%;
+}
+
+.column-one-third-header {
+  display: flex;
+  flex-basis: calc(100%/3);
+}
+
+.favorites-header {
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .column-full {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .column-one-third {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: calc(100%/3);
+  }
+}

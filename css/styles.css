@@ -1,29 +1,5 @@
-.header-container {
-  margin: 0 auto;
-  border-bottom-style: solid;
-  font-family: Poppins, sans-serif;
-  background-color: #78d4da;
-}
-
-.row {
-  display: flex;
-}
-
-.column-full {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.column-one-third {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  width: calc(100%/3);
-}
-
 .header-button {
-  padding: 2rem 10rem;
+  padding: 1rem;
   width: 100%;
   border-radius: 1rem;
   border-width: 0.1rem;
@@ -45,6 +21,18 @@
 .ingredient-entry {
   display: flex;
   justify-content: space-around;
-  text-align: center;
   width: 100%;
+  padding: 1rem;
+  margin: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .header-button {
+    padding: 2rem 10rem;
+  }
 }
