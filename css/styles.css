@@ -1,0 +1,50 @@
+.header-container {
+  margin: 0 auto;
+  border-bottom-style: solid;
+  font-family: Poppins, sans-serif;
+  background-color: #78d4da;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.column-one-third {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: calc(100%/3);
+}
+
+.header-button {
+  padding: 2rem 10rem;
+  width: 100%;
+  border-radius: 1rem;
+  border-width: 0.1rem;
+  font-family: Poppins, sans-serif;
+}
+
+.favorites-header {
+  background-color: #f2da5a;
+}
+
+.list-of-ingredients-header {
+  background-color: #7ada78;
+}
+
+.cooking-selection-header {
+  background-color: #e58a48;
+}
+
+.ingredient-entry {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 100%;
+}
