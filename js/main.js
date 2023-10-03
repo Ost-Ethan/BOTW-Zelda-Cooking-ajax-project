@@ -1,5 +1,39 @@
 const ListOfIngredientsApiCall = new XMLHttpRequest();
-ListOfIngredientsApiCall.responseType = 'JSON';
+ListOfIngredientsApiCall.open('GET', 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/materials');
+ListOfIngredientsApiCall.responseType = 'json';
+ListOfIngredientsApiCall.addEventListener('load', renderIngredientList);
+ListOfIngredientsApiCall.send();
+
+function renderIngredientList(event) {
+  const calledIngredientsList = ListOfIngredientsApiCall.response.data;
+  for (let i = 0; i < calledIngredientsList.length; i++) {
+
+    const currentID = calledIngredientsList[i].id;
+    const currentName = calledIngredientsList[i].name;
+    const currentImage = calledIngredientsList[i].image;
+    // const currentHeartsRecovered = calledIngredientsList[i].hearts_recovered;
+    // const currentCookingEffect = calledIngredientsList[i].cooking_effect;
+
+    const $divColumnOneThird = document.createElement('div');
+    const $divIngredientEntry = document.createElement('div');
+    const $divIdNumber = document.createElement('div');
+    const $divIngredientName = document.createElement('div');
+    const $imgIngredientPicture = document.createElement('img');
+
+    $divColumnOneThird.className = 'column-one-third';
+    $divIngredientEntry.className = 'ingredient-entry';
+    $divIdNumber.textContent = currentID;
+    $divIngredientName.textContent = currentName;
+    $imgIngredientPicture.setAttribute('src', currentImage);
+
+    $divColumnOneThird.appendChild($divIngredientEntry);
+    $divIngredientEntry.appendChild($divIdNumber);
+    $divIngredientEntry.appendChild($divIngredientName);
+    $divIngredientEntry.appendChild($imgIngredientPicture);
+    // append created dom tree to the list of ingredients element
+    $ingredientList.appendChild($divColumnOneThird);
+  }
+}
 
 const $ingredientList = document.querySelector('.list-of-ingredients');
 $ingredientList.addEventListener('click', handleSelectIngredient);
