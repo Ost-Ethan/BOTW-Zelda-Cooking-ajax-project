@@ -22,7 +22,9 @@ function renderIngredientList(event) {
 
     $divColumnOneThird.className = 'column-one-third';
     $divIngredientEntry.className = 'ingredient-entry';
+    $divIdNumber.className = 'entry-format';
     $divIdNumber.textContent = currentID;
+    $divIngredientName.className = 'entry-format';
     $divIngredientName.textContent = currentName;
     $imgIngredientPicture.setAttribute('src', currentImage);
 

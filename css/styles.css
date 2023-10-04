@@ -20,7 +20,7 @@
 
 .ingredient-entry {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   padding: 1rem;
   margin: 0.25rem;
@@ -43,6 +43,12 @@ h1 {
 .list-of-ingredients {
   display: flex;
   flex-wrap: wrap;
+}
+
+.entry-format {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 @media screen and (min-width: 768px) {
