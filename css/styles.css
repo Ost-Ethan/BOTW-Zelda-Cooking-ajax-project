@@ -1,3 +1,7 @@
+.hidden {
+  display: none !important;
+}
+
 .header-button {
   padding: 1rem;
   width: 100%;
@@ -51,8 +55,63 @@ h1 {
   align-content: center;
 }
 
+.cooking-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ingredient {
+  background-color: orange;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 9rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.finished-dish-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 0.2rem 1rem;
+}
+
+#finished-dish {
+  max-width: 10rem;
+}
+
+.favorite-button {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
 @media screen and (min-width: 768px) {
   .header-button {
     padding: 2rem 10rem;
+  }
+
+  #finished-dish {
+    max-width: 100%;
+  }
+
+  .finished-dish-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: orange;
+    border-radius: 1rem;
+    width: 50%;
+    margin-top: 3rem;
+    padding: 1rem;
   }
 }

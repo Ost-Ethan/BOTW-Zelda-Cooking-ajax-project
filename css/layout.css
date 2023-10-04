@@ -8,6 +8,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  flex-basis: 100%;
 }
 
 .header-row {
@@ -17,6 +18,10 @@
 .column-full,
 .column-one-third {
   width: 100%;
+}
+
+.column-half {
+  width: 50%;
 }
 
 .column-one-third-header {
@@ -40,5 +45,12 @@
     text-align: center;
     justify-content: center;
     width: calc(100%/3);
+  }
+
+  .column-half {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
   }
 }

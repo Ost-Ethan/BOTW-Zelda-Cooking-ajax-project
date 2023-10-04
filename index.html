@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -41,8 +44,59 @@
     </div>
   </header>
   <main>
-    <div class="list-of-ingredients">
+    <div class="list-of-ingredients hidden">
       <div class="row">
+      </div>
+    </div>
+    <div class="cooking-selection">
+      <div class="ingredient ing-1">
+        <div>Ingredient #1 <i class="fa-regular fa-circle-xmark"></i></div>
+        <div>Name of Ingredient</div>
+        <div>Heart Amount</div>
+        <div>Status Effect</div>
+      </div>
+      <div class="ingredient ing-2">
+        <div>Ingredient #2 <i class="fa-regular fa-circle-xmark"></i></div>
+        <div>Name of Ingredient</div>
+        <div>Heart Amount</div>
+        <div>Status Effect</div>
+      </div>
+      <div class="ingredient ing-3">
+        <div>Ingredient #3 <i class="fa-regular fa-circle-xmark"></i></div>
+        <div>Name of Ingredient</div>
+        <div>Heart Amount</div>
+        <div>Status Effect</div>
+      </div>
+      <div class="ingredient ing-4">
+        <div>Ingredient #4 <i class="fa-regular fa-circle-xmark"></i></div>
+        <div>Name of Ingredient</div>
+        <div>Heart Amount</div>
+        <div>Status Effect</div>
+      </div>
+      <div class="ingredient ing-5">
+        <div>Ingredient #5 <i class="fa-regular fa-circle-xmark"></i></div>
+        <div>Name of Ingredient</div>
+        <div>Heart Amount</div>
+        <div>Status Effect</div>
+      </div>
+      <div class="finished-dish-container">
+        <div class="row">
+          <div class="column-half">
+            <div>Name of Dish</div>
+          </div>
+          <div class="column-half favorite-button">
+            <button>Favorite</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img id="finished-dish" src="https://hips.hearstapps.com/hmg-prod/images/turkey-burger-index-64873e8770b34.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*" alt="img">
+          </div>
+          <div class="column-half">
+            <div> Hearts Healed Amount</div>
+            <div> Status Effect (if applicable)</div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
