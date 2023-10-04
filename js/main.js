@@ -4,6 +4,8 @@ ListOfIngredientsApiCall.responseType = 'json';
 ListOfIngredientsApiCall.addEventListener('load', renderIngredientList);
 ListOfIngredientsApiCall.send();
 
+const selectedIngredientsArray = [];
+
 function renderIngredientList(event) {
   const calledIngredientsList = ListOfIngredientsApiCall.response.data;
   for (let i = 0; i < calledIngredientsList.length; i++) {
@@ -24,7 +26,7 @@ function renderIngredientList(event) {
     $divIngredientEntry.className = 'ingredient-entry';
     $divIdNumber.className = 'entry-format';
     $divIdNumber.textContent = currentID;
-    $divIngredientName.className = 'entry-format';
+    $divIngredientName.className = 'entry-format name';
     $divIngredientName.textContent = currentName;
     $imgIngredientPicture.setAttribute('src', currentImage);
 
@@ -43,17 +45,21 @@ $ingredientList.addEventListener('click', handleSelectIngredient);
 // callback function on click that determines what ingredient on the list was clicked, and will reuturn that into the array of selectedIngredients
 function handleSelectIngredient(event) {
   const $clickedIngredient = event.target;
-  if ($clickedIngredient.getAttribute('class') === 'ingredient-entry') {
-    $clickedIngredient.setAttribute('class', 'ingredient-entry highlight');
-  } else if ($clickedIngredient.getAttribute('class') === 'ingredient-entry highlight') {
-    $clickedIngredient.setAttribute('class', 'ingredient-entry');
-  } else {
+  const $closestEntryToClick = $clickedIngredient.closest('.ingredient-entry');
 
-    const $closestEntryToClick = $clickedIngredient.closest('.ingredient-entry');
-    if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry') {
-      $closestEntryToClick.setAttribute('class', 'ingredient-entry highlight');
-    } else if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry highlight') {
-      $closestEntryToClick.setAttribute('class', 'ingredient-entry');
+  // Setting the selected ingredient name based on the closest entry to click, where the name of the ingredient is always the child of the entry at the index of 1.
+  const $selectedIngredientName = $closestEntryToClick.children[1];
+
+  // Checking to see what ingredient entry was clicked, highlights it and then stores the ingredient name in the storedIngredientsArray.
+  if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry' && selectedIngredientsArray.length < 5) {
+    $closestEntryToClick.setAttribute('class', 'ingredient-entry highlight');
+    selectedIngredientsArray.unshift($selectedIngredientName.textContent);
+  } else if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry highlight') {
+    for (let i = 0; i < selectedIngredientsArray.length; i++) {
+      if (selectedIngredientsArray[i] === $selectedIngredientName.textContent) {
+        selectedIngredientsArray.splice(i, 1);
+        $closestEntryToClick.setAttribute('class', 'ingredient-entry');
+      }
     }
   }
 }
