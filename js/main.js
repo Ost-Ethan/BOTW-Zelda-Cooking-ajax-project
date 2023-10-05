@@ -91,3 +91,29 @@ function getIngredientObjectByName(ingredientTextContent) {
 
   return ingredientEntryObject;
 }
+
+function renderCookingSelection(selectedIngredientsArray) {
+
+  for (let i = 0; i < 5; i++) {
+    const $ingredientNumber = document.querySelector(`.ing-${i + 1}`);
+    if (selectedIngredientsArray[i] !== undefined) {
+      $ingredientNumber.children[1].textContent = selectedIngredientsArray[i].name;
+      if (selectedIngredientsArray[i].hearts_recovered === '') {
+        $ingredientNumber.children[2].textContent = '0';
+      } else {
+        $ingredientNumber.children[2].textContent = `Hearts Recovered: ${selectedIngredientsArray[i].hearts_recovered}`;
+      }
+      if (selectedIngredientsArray[i].cooking_effect === '') {
+        $ingredientNumber.children[3].textContent = 'No Cooking Effect';
+      } else {
+        $ingredientNumber.children[3].textContent = selectedIngredientsArray[i].cooking_effect;
+      }
+    } else {
+      $ingredientNumber.children[1].textContent = 'No Selected Ingredient';
+      $ingredientNumber.children[2].textContent = '';
+      $ingredientNumber.children[3].textContent = '';
+    }
+  }
+}
+
+renderCookingSelection(selectedIngredientsArray);
