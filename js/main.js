@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', ingredientRequest);
 
 function ingredientRequest() {
   const listOfIngredientsApiCall = new XMLHttpRequest();
-  listOfIngredientsApiCall.open('GET', 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/materials');
+  listOfIngredientsApiCall.open(
+    'GET',
+    'https://botw-compendium.herokuapp.com/api/v3/compendium/category/materials'
+  );
   listOfIngredientsApiCall.responseType = 'json';
   listOfIngredientsApiCall.send();
   listOfIngredientsApiCall.addEventListener('load', function () {
@@ -15,7 +18,6 @@ const selectedIngredientsArray = [];
 function renderIngredientList(ingredientApiData) {
   const calledIngredientsList = ingredientApiData.response.data;
   for (let i = 0; i < calledIngredientsList.length; i++) {
-
     const currentID = calledIngredientsList[i].id;
     const currentName = calledIngredientsList[i].name;
     const currentImage = calledIngredientsList[i].image;
@@ -56,10 +58,15 @@ function handleSelectIngredient(event) {
   const $selectedIngredientName = $closestEntryToClick.children[1];
 
   // Checking to see what ingredient entry was clicked, highlights it and then stores the ingredient name in the storedIngredientsArray.
-  if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry' && selectedIngredientsArray.length < 5) {
+  if (
+    $closestEntryToClick.getAttribute('class') === 'ingredient-entry' &&
+    selectedIngredientsArray.length < 5
+  ) {
     $closestEntryToClick.setAttribute('class', 'ingredient-entry highlight');
     selectedIngredientsArray.unshift($selectedIngredientName.textContent);
-  } else if ($closestEntryToClick.getAttribute('class') === 'ingredient-entry highlight') {
+  } else if (
+    $closestEntryToClick.getAttribute('class') === 'ingredient-entry highlight'
+  ) {
     for (let i = 0; i < selectedIngredientsArray.length; i++) {
       if (selectedIngredientsArray[i] === $selectedIngredientName.textContent) {
         selectedIngredientsArray.splice(i, 1);

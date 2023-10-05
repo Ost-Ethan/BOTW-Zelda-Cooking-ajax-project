@@ -88,10 +88,19 @@ h1 {
   max-width: 10rem;
 }
 
-.favorite-button {
+.button-on-end {
+  flex-basis: 100%;
   display: flex;
   justify-content: end;
-  margin-bottom: 1rem;
+}
+
+.favorite-button {
+  padding: 1rem 3rem;
+  margin-right: 2rem;
+  margin-top: 0.5rem;
+  background-color: #f2da5a;
+  border-radius: 1rem;
+  border-style: hidden;
 }
 
 @media screen and (min-width: 768px) {
@@ -100,7 +109,8 @@ h1 {
   }
 
   #finished-dish {
-    max-width: 100%;
+    max-width: 50%;
+    margin-bottom: 1rem;
   }
 
   .finished-dish-container {
@@ -110,8 +120,7 @@ h1 {
     align-items: center;
     background-color: orange;
     border-radius: 1rem;
-    width: 50%;
-    margin-top: 3rem;
-    padding: 1rem;
+    width: 100%;
+    margin: 10rem;
   }
 }

@@ -33,6 +33,13 @@
   padding: 0;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
 @media screen and (min-width: 768px) {
   .column-full {
     display: flex;
