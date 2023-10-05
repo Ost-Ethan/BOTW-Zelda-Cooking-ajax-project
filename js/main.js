@@ -79,6 +79,7 @@ function handleSelectIngredient(event) {
   }
 }
 
+// This function finds the specifc object associated with the name of the selected ingredient
 function getIngredientObjectByName(ingredientTextContent) {
   let ingredientEntryObject = {};
 
@@ -92,6 +93,7 @@ function getIngredientObjectByName(ingredientTextContent) {
   return ingredientEntryObject;
 }
 
+// This function renders the entries in the selectedIngredientsArray on the cooking selection tab.
 function renderCookingSelection(selectedIngredientsArray) {
 
   for (let i = 0; i < 5; i++) {
@@ -113,6 +115,42 @@ function renderCookingSelection(selectedIngredientsArray) {
       $ingredientNumber.children[3].textContent = '';
       $ingredientNumber.children[4].textContent = '';
     }
+  }
+}
+
+const $cookingView = document.querySelector('.cooking-selection');
+$cookingView.addEventListener('click', deleteSelectedIngredient);
+
+// This is a callback function for removing selected ingredients on the cooking selection view. It finds the nearest div, and then checks the textContent of its children at the 2nd index and checks it to see what entry in the selectedIngredientsArray has a name that matches. It then removes that from the array, and sets the text content of that div to the no ingredient selected state.
+function deleteSelectedIngredient(event) {
+  if (event.target.className === 'fa-regular fa-circle-xmark') {
+    const $closestIngredientDiv = event.target.closest('.ingredient');
+    for (let i = 0; i < selectedIngredientsArray.length; i++) {
+      if ($closestIngredientDiv.children[2].textContent === selectedIngredientsArray[i].name) {
+        selectedIngredientsArray.splice(i, 1);
+        $closestIngredientDiv.children[2].textContent = 'No Selected Ingredient';
+        $closestIngredientDiv.children[3].textContent = '';
+        $closestIngredientDiv.children[4].textContent = '';
+      }
+
+    }
+  }
+}
+
+const $dataViewElements = document.querySelectorAll('div[data-view]');
+const $headerRowForButtons = document.querySelector('.header-row');
+$headerRowForButtons.addEventListener('click', function (event) {
+  viewSwap(event.target.getAttribute('id'));
+});
+
+function viewSwap(viewString) {
+  for (let i = 0; i < $dataViewElements.length; i++) {
+    if (viewString === $dataViewElements[i].getAttribute('data-view')) {
+      $dataViewElements[i].className = '';
+    } else {
+      $dataViewElements[i].className = 'hidden';
+    }
+    renderCookingSelection(selectedIngredientsArray);
   }
 }
 
