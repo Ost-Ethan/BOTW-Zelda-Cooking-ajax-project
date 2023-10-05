@@ -1,3 +1,5 @@
+let storedIngredientsArray = [];
+
 document.addEventListener('DOMContentLoaded', ingredientRequest);
 
 function ingredientRequest() {
@@ -10,6 +12,7 @@ function ingredientRequest() {
   listOfIngredientsApiCall.send();
   listOfIngredientsApiCall.addEventListener('load', function () {
     renderIngredientList(listOfIngredientsApiCall);
+    storedIngredientsArray = listOfIngredientsApiCall.response.data;
   });
 }
 
@@ -63,15 +66,28 @@ function handleSelectIngredient(event) {
     selectedIngredientsArray.length < 5
   ) {
     $closestEntryToClick.setAttribute('class', 'ingredient-entry highlight');
-    selectedIngredientsArray.unshift($selectedIngredientName.textContent);
+    selectedIngredientsArray.unshift(getIngredientObjectByName($selectedIngredientName.textContent));
   } else if (
     $closestEntryToClick.getAttribute('class') === 'ingredient-entry highlight'
   ) {
     for (let i = 0; i < selectedIngredientsArray.length; i++) {
-      if (selectedIngredientsArray[i] === $selectedIngredientName.textContent) {
+      if (selectedIngredientsArray[i].name === $selectedIngredientName.textContent) {
         selectedIngredientsArray.splice(i, 1);
         $closestEntryToClick.setAttribute('class', 'ingredient-entry');
       }
     }
   }
+}
+
+function getIngredientObjectByName(ingredientTextContent) {
+  let ingredientEntryObject = {};
+
+  for (let i = 0; i < storedIngredientsArray.length; i++) {
+    const currentIngredient = storedIngredientsArray[i].name;
+    if (currentIngredient === ingredientTextContent) {
+      ingredientEntryObject = storedIngredientsArray[i];
+    }
+  }
+
+  return ingredientEntryObject;
 }

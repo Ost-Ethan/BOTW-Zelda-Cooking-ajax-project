@@ -96,7 +96,6 @@ h1 {
 
 .favorite-button {
   padding: 1rem 3rem;
-  margin-right: 2rem;
   margin-top: 0.5rem;
   background-color: #f2da5a;
   border-radius: 1rem;
@@ -122,5 +121,13 @@ h1 {
     border-radius: 1rem;
     width: 100%;
     margin: 10rem;
+  }
+
+  .favorite-button {
+    padding: 1rem 11rem;
+    margin-top: 0.5rem;
+    background-color: #f2da5a;
+    border-radius: 1rem;
+    border-style: hidden;
   }
 }
