@@ -33,6 +33,7 @@ function renderIngredientList(ingredientApiData) {
 
     $divColumnOneThird.className = 'column-one-third';
     $divIngredientEntry.className = 'ingredient-entry';
+    $divIngredientEntry.setAttribute('id', currentID);
     $divIdNumber.className = 'entry-format';
     $divIdNumber.textContent = currentID;
     $divIngredientName.className = 'entry-format name';
@@ -143,6 +144,7 @@ $headerRowForButtons.addEventListener('click', function (event) {
   viewSwap(event.target.getAttribute('id'));
 });
 
+// Function that swaps the view to the corrosponding button being pressed. It also updates highlights for the ingredient list, and renders the ingredient list every time the view is swapped.
 function viewSwap(viewString) {
   for (let i = 0; i < $dataViewElements.length; i++) {
     if (viewString === $dataViewElements[i].getAttribute('data-view')) {
@@ -150,8 +152,26 @@ function viewSwap(viewString) {
     } else {
       $dataViewElements[i].className = 'hidden';
     }
-    renderCookingSelection(selectedIngredientsArray);
+  }
+  renderCookingSelection(selectedIngredientsArray);
+  if (selectedIngredientsArray.length > 0) {
+    updateHighlightedIngredients(selectedIngredientsArray);
   }
 }
 
-renderCookingSelection(selectedIngredientsArray);
+// Function that only highlights selected ingredients in the ingredients array when the views are swapped.
+function updateHighlightedIngredients(array) {
+  const $allIngredientEntries = document.querySelectorAll('.ingredient-entry');
+  // reset all ingredients to an unighlighted state
+  for (let i = 0; i < $allIngredientEntries.length; i++) {
+    if ($allIngredientEntries[i].className === 'ingredient-entry highlight') {
+      $allIngredientEntries[i].className = 'ingredient-entry';
+    }
+  }
+  // highlight the ingredients in the selected array by getting the element id that matches the item ID
+  for (let a = 0; a < selectedIngredientsArray.length; a++) {
+    const currentingreidientID = selectedIngredientsArray[a].id;
+    const $closestEntry = document.getElementById(currentingreidientID);
+    $closestEntry.className = 'ingredient-entry highlight';
+  }
+}
