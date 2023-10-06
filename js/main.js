@@ -135,6 +135,8 @@ function deleteSelectedIngredient(event) {
       }
 
     }
+    renderCookingSelection(selectedIngredientsArray);
+    calculateFinishedDish(selectedIngredientsArray);
   }
 }
 
@@ -187,6 +189,11 @@ function assignIngredientType(selectedIngredientsArray) {
     }
   }
 }
+
+const $cookedDishName = document.querySelector('#cooked-dish-name');
+const $cookedDishHearts = document.querySelector('#cooked-hearts-healed');
+const $cookedStatusEffect = document.querySelector('#cooked-status-effect');
+const $finishedDishPicture = document.querySelector('#finished-dish');
 
 function calculateFinishedDish(selectedIngredientsArray) {
   let totalHeartsHealed = 0;
@@ -272,5 +279,9 @@ function calculateFinishedDish(selectedIngredientsArray) {
       break;
   }
   // Put all information into the elements on the page
+  $cookedDishName.textContent = dishType;
+  $cookedDishHearts.textContent = `Hearts Restored: ${totalHeartsHealed}`;
+  $cookedStatusEffect.textContent = `Status Effect: ${storedStatusEffect}`;
+  $finishedDishPicture.setAttribute('src', cookedDishImgSrc);
   return { totalHeartsHealed, storedStatusEffect, statusCount, dishType, cookedDishImgSrc };
 }
