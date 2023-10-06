@@ -189,16 +189,35 @@ function assignIngredientType(selectedIngredientsArray) {
 }
 
 function calculateFinishedDish(selectedIngredientsArray) {
-
+  let totalHeartsHealed = 0;
+  let storedStatusEffect = '';
+  let statusCount = 0;
   // Heart Calculation
-
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    totalHeartsHealed += (selectedIngredientsArray[i].hearts_recovered * 2);
+  }
   // Status Effect Calculation
+  // first we store the first status effect we find.
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    if (selectedIngredientsArray[i].cooking_effect !== '') {
+      storedStatusEffect = selectedIngredientsArray[i].cooking_effect;
+      i = 6;
+    }
+    // then we check to see if that string matches the other ingredients in the array and count if it does, and assign confilcting status to storedStatusEffect if they dont
+    for (let i = 0; i < selectedIngredientsArray.length; i++) {
+      if (storedStatusEffect === selectedIngredientsArray[i].cooking_effect) {
+        statusCount++;
+      } else if (selectedIngredientsArray[i].cooking_effect !== '') {
+        storedStatusEffect = 'Conflicting Status';
+        i = 6;
+      }
+    }
 
-  // Assignment of ingredient type by id #
-
+  }
   // Calculate type of dish from type of ingredients used
 
   // Find the image that corrosponds to the type of dish.
 
   // Put all information into the elements on the page
+  return { totalHeartsHealed, statusCount };
 }
