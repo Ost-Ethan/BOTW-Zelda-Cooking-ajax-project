@@ -178,9 +178,9 @@ function updateHighlightedIngredients(array) {
 
 function assignIngredientType(selectedIngredientsArray) {
   for (let i = 0; i < selectedIngredientsArray.length; i++) {
-    if (selectedIngredientsArray[i].id > 185) {
+    if (selectedIngredientsArray[i].id > 184) {
       selectedIngredientsArray[i].ingredientType = 'vegetable';
-    } else if (selectedIngredientsArray[i].id > 174) {
+    } else if (selectedIngredientsArray[i].id > 173) {
       selectedIngredientsArray[i].ingredientType = 'mushroom';
     } else {
       selectedIngredientsArray[i].ingredientType = 'fruit';
@@ -192,6 +192,11 @@ function calculateFinishedDish(selectedIngredientsArray) {
   let totalHeartsHealed = 0;
   let storedStatusEffect = '';
   let statusCount = 0;
+  let dishType = '';
+  let mushroomBool = false;
+  let fruitBool = false;
+  let vegetableBool = false;
+  let cookedDishImgSrc = '';
   // Heart Calculation
   for (let i = 0; i < selectedIngredientsArray.length; i++) {
     totalHeartsHealed += (selectedIngredientsArray[i].hearts_recovered * 2);
@@ -212,12 +217,60 @@ function calculateFinishedDish(selectedIngredientsArray) {
         i = 6;
       }
     }
-
   }
   // Calculate type of dish from type of ingredients used
+  // first store how many of each ingredient is in the dish
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    switch (selectedIngredientsArray[i].ingredientType) {
+      case 'mushroom':
+        mushroomBool = true;
+        break;
+      case 'vegetable':
+        vegetableBool = true;
+        break;
+      case 'fruit':
+        fruitBool = true;
+        break;
+    }
+  }
+  // Using this type info we can decide what dish this is. I'm not sure how to do this other than a million if statements. sorry.
+  if (fruitBool && mushroomBool && vegetableBool) {
+    dishType = 'Steamed Mushrooms';
+  } else if (mushroomBool && fruitBool) {
+    dishType = 'Fruit and Mushroom Mix';
+  } else if (mushroomBool && vegetableBool) {
+    dishType = 'Steamed Mushrooms';
+  } else if (fruitBool && vegetableBool) {
+    dishType = 'Steamed Fruit';
+  } else if (mushroomBool) {
+    dishType = 'Mushroom Skewer';
+  } else if (fruitBool) {
+    dishType = 'Simmered Fruit';
+  } else if (vegetableBool) {
+    dishType = 'Fried Wild Greens';
+  }
 
   // Find the image that corrosponds to the type of dish.
-
+  switch (dishType) {
+    case 'Steamed Mushrooms':
+      cookedDishImgSrc = '/images/Steamed_Mushrooms.png';
+      break;
+    case 'Fruit and Mushroom Mix':
+      cookedDishImgSrc = '/images/Fruit_and_Mushroom_Mix.png';
+      break;
+    case 'Steamed Fruit':
+      cookedDishImgSrc = '/images/Steamed_Fruit.png';
+      break;
+    case 'Mushroom Skewer':
+      cookedDishImgSrc = '/images/Mushroom_Skewer.png';
+      break;
+    case 'Simmered Fruit':
+      cookedDishImgSrc = '/images/Simmered_Fruit.png';
+      break;
+    case 'Fried Wild Greens':
+      cookedDishImgSrc = '/images/Fried_Wild_Greens.png';
+      break;
+  }
   // Put all information into the elements on the page
-  return { totalHeartsHealed, statusCount };
+  return { totalHeartsHealed, storedStatusEffect, statusCount, dishType, cookedDishImgSrc };
 }
