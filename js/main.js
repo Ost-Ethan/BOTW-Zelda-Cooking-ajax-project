@@ -153,8 +153,10 @@ function viewSwap(viewString) {
       $dataViewElements[i].className = 'hidden';
     }
   }
+  assignIngredientType(selectedIngredientsArray);
   renderCookingSelection(selectedIngredientsArray);
   updateHighlightedIngredients(selectedIngredientsArray);
+  calculateFinishedDish(selectedIngredientsArray);
 }
 
 // Function that only highlights selected ingredients in the ingredients array when the views are swapped.
@@ -172,4 +174,31 @@ function updateHighlightedIngredients(array) {
       $closestEntry.className = 'ingredient-entry highlight';
     }
   }
+}
+
+function assignIngredientType(selectedIngredientsArray) {
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    if (selectedIngredientsArray[i].id > 185) {
+      selectedIngredientsArray[i].ingredientType = 'vegetable';
+    } else if (selectedIngredientsArray[i].id > 174) {
+      selectedIngredientsArray[i].ingredientType = 'mushroom';
+    } else {
+      selectedIngredientsArray[i].ingredientType = 'fruit';
+    }
+  }
+}
+
+function calculateFinishedDish(selectedIngredientsArray) {
+
+  // Heart Calculation
+
+  // Status Effect Calculation
+
+  // Assignment of ingredient type by id #
+
+  // Calculate type of dish from type of ingredients used
+
+  // Find the image that corrosponds to the type of dish.
+
+  // Put all information into the elements on the page
 }
