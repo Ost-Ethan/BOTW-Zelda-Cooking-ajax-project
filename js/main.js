@@ -277,6 +277,8 @@ function calculateFinishedDish(selectedIngredientsArray) {
     case 'Fried Wild Greens':
       cookedDishImgSrc = '/images/Fried_Wild_Greens.png';
       break;
+    default:
+      cookedDishImgSrc = '/images/No_Image_Symbol.png';
   }
   // Put all information into the elements on the page
   $cookedDishName.textContent = dishType;
