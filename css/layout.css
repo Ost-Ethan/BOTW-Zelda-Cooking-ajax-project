@@ -8,6 +8,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  flex-basis: 100%;
 }
 
 .header-row {
@@ -19,6 +20,11 @@
   width: 100%;
 }
 
+.column-half {
+  width: 50%;
+  display: flex;
+}
+
 .column-one-third-header {
   display: flex;
   flex-basis: calc(100%/3);
@@ -26,6 +32,20 @@
 
 .favorites-header {
   padding: 0;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+  flex-basis: 100%;
+}
+
+.dish-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,5 +60,12 @@
     text-align: center;
     justify-content: center;
     width: calc(100%/3);
+  }
+
+  .column-half {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
   }
 }

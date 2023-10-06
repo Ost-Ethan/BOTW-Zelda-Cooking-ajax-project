@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -32,17 +35,83 @@
           <button class="header-button favorites-header">Favorites</button>
         </div>
         <div class="column-one-third-header">
-          <button class="header-button list-of-ingredients-header">List of Ingredients</button>
+          <button class="header-button list-of-ingredients-header" id="list-of-ingredients">List of Ingredients</button>
         </div>
         <div class="column-one-third-header">
-          <button class="header-button cooking-selection-header">Cooking selection</button>
+          <button class="header-button cooking-selection-header" id="cooking-selection">Cooking selection</button>
         </div>
       </div>
     </div>
   </header>
   <main>
-    <div class="list-of-ingredients">
-      <div class="row">
+    <div data-view="list-of-ingredients" class="">
+      <div class="list-of-ingredients">
+        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div data-view="cooking-selection" class="hidden">
+      <div class="cooking-selection">
+        <div class="ingredient ing-1">
+          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="ingredient-label">Ingredient #1</div>
+          <div>Name of Ingredient</div>
+          <div>Heart Amount</div>
+          <div>Status Effect</div>
+        </div>
+        <div class="ingredient ing-2">
+          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="ingredient-label">Ingredient #2</div>
+          <div>Name of Ingredient</div>
+          <div>Heart Amount</div>
+          <div>Status Effect</div>
+        </div>
+        <div class="ingredient ing-3">
+          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="ingredient-label">Ingredient #3</div>
+          <div>Name of Ingredient</div>
+          <div>Heart Amount</div>
+          <div>Status Effect</div>
+        </div>
+        <div class="ingredient ing-4">
+          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="ingredient-label">Ingredient #4</div>
+          <div>Name of Ingredient</div>
+          <div>Heart Amount</div>
+          <div>Status Effect</div>
+        </div>
+        <div class="ingredient ing-5">
+          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="ingredient-label">Ingredient #5</div>
+          <div>Name of Ingredient</div>
+          <div>Heart Amount</div>
+          <div>Status Effect</div>
+        </div>
+        <div class="finished-dish-container">
+          <div class="row">
+            <div class="column-half">
+              <div class="dish-name">
+                <div>Name of Dish</div>
+              </div>
+            </div>
+            <div class="column-half">
+              <div class="button-on-end">
+                <button class="favorite-button">Favorite</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-half">
+              <img id="finished-dish" src="https://hips.hearstapps.com/hmg-prod/images/turkey-burger-index-64873e8770b34.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*" alt="img">
+            </div>
+            <div class="column-half">
+              <div class="flex-column">
+                <div> Hearts Healed Amount</div>
+                <div> Status Effect (if applicable)</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
