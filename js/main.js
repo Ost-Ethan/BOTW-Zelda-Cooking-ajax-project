@@ -194,11 +194,13 @@ const $cookedDishName = document.querySelector('#cooked-dish-name');
 const $cookedDishHearts = document.querySelector('#cooked-hearts-healed');
 const $cookedStatusEffect = document.querySelector('#cooked-status-effect');
 const $finishedDishPicture = document.querySelector('#finished-dish');
+const $statusEffectStrength = document.querySelector('#cooked-status-strength');
 
 function calculateFinishedDish(selectedIngredientsArray) {
   let totalHeartsHealed = 0;
   let storedStatusEffect = '';
   let statusCount = 0;
+  let statusStrength = '';
   let dishType = '';
   let mushroomBool = false;
   let fruitBool = false;
@@ -206,7 +208,7 @@ function calculateFinishedDish(selectedIngredientsArray) {
   let cookedDishImgSrc = '';
   // Heart Calculation
   for (let i = 0; i < selectedIngredientsArray.length; i++) {
-    totalHeartsHealed += (selectedIngredientsArray[i].hearts_recovered * 2);
+    totalHeartsHealed += selectedIngredientsArray[i].hearts_recovered * 2;
   }
   // Status Effect Calculation
   // first we store the first status effect we find.
@@ -224,6 +226,26 @@ function calculateFinishedDish(selectedIngredientsArray) {
         i = 6;
       }
     }
+  }
+  // Using the statusCount varible we can determine the strength of the buff and place that string in the statusStrength variable
+  switch (statusCount) {
+    case 0:
+      statusStrength = '';
+      break;
+    case 1:
+    case 2:
+      statusStrength = 'level 1';
+      break;
+    case 3:
+    case 4:
+      statusStrength = 'level 2';
+      break;
+    case 5:
+      statusStrength = 'level 3';
+      break;
+    case 6:
+      statusStrength = '';
+      break;
   }
   // Calculate type of dish from type of ingredients used
   // first store how many of each ingredient is in the dish
@@ -280,10 +302,25 @@ function calculateFinishedDish(selectedIngredientsArray) {
     default:
       cookedDishImgSrc = '/images/No_Image_Symbol.png';
   }
+  // set the value of status effect and strength to different values that look nicer if no status is found
+  if (
+    storedStatusEffect === 'Conflicting Status' ||
+    storedStatusEffect === ''
+  ) {
+    storedStatusEffect = 'No Effect';
+    statusStrength = 'None';
+  }
   // Put all information into the elements on the page
   $cookedDishName.textContent = dishType;
   $cookedDishHearts.textContent = `Hearts Restored: ${totalHeartsHealed}`;
   $cookedStatusEffect.textContent = `Status Effect: ${storedStatusEffect}`;
+  $statusEffectStrength.textContent = `Level of Effect: ${statusStrength}`;
   $finishedDishPicture.setAttribute('src', cookedDishImgSrc);
-  return { totalHeartsHealed, storedStatusEffect, statusCount, dishType, cookedDishImgSrc };
+  return {
+    totalHeartsHealed,
+    storedStatusEffect,
+    statusCount,
+    dishType,
+    cookedDishImgSrc
+  };
 }
