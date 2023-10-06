@@ -154,9 +154,7 @@ function viewSwap(viewString) {
     }
   }
   renderCookingSelection(selectedIngredientsArray);
-  if (selectedIngredientsArray.length > 0) {
-    updateHighlightedIngredients(selectedIngredientsArray);
-  }
+  updateHighlightedIngredients(selectedIngredientsArray);
 }
 
 // Function that only highlights selected ingredients in the ingredients array when the views are swapped.
@@ -164,14 +162,14 @@ function updateHighlightedIngredients(array) {
   const $allIngredientEntries = document.querySelectorAll('.ingredient-entry');
   // reset all ingredients to an unighlighted state
   for (let i = 0; i < $allIngredientEntries.length; i++) {
-    if ($allIngredientEntries[i].className === 'ingredient-entry highlight') {
-      $allIngredientEntries[i].className = 'ingredient-entry';
-    }
+    $allIngredientEntries[i].className = 'ingredient-entry';
   }
   // highlight the ingredients in the selected array by getting the element id that matches the item ID
-  for (let a = 0; a < selectedIngredientsArray.length; a++) {
-    const currentingreidientID = selectedIngredientsArray[a].id;
-    const $closestEntry = document.getElementById(currentingreidientID);
-    $closestEntry.className = 'ingredient-entry highlight';
+  if (selectedIngredientsArray.length !== 0) {
+    for (let a = 0; a < selectedIngredientsArray.length; a++) {
+      const currentingreidientID = selectedIngredientsArray[a].id;
+      const $closestEntry = document.getElementById(currentingreidientID);
+      $closestEntry.className = 'ingredient-entry highlight';
+    }
   }
 }
