@@ -135,6 +135,8 @@ function deleteSelectedIngredient(event) {
       }
 
     }
+    renderCookingSelection(selectedIngredientsArray);
+    calculateFinishedDish(selectedIngredientsArray);
   }
 }
 
@@ -153,8 +155,10 @@ function viewSwap(viewString) {
       $dataViewElements[i].className = 'hidden';
     }
   }
+  assignIngredientType(selectedIngredientsArray);
   renderCookingSelection(selectedIngredientsArray);
   updateHighlightedIngredients(selectedIngredientsArray);
+  calculateFinishedDish(selectedIngredientsArray);
 }
 
 // Function that only highlights selected ingredients in the ingredients array when the views are swapped.
@@ -172,4 +176,151 @@ function updateHighlightedIngredients(array) {
       $closestEntry.className = 'ingredient-entry highlight';
     }
   }
+}
+
+function assignIngredientType(selectedIngredientsArray) {
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    if (selectedIngredientsArray[i].id > 184) {
+      selectedIngredientsArray[i].ingredientType = 'vegetable';
+    } else if (selectedIngredientsArray[i].id > 173) {
+      selectedIngredientsArray[i].ingredientType = 'mushroom';
+    } else {
+      selectedIngredientsArray[i].ingredientType = 'fruit';
+    }
+  }
+}
+
+const $cookedDishName = document.querySelector('#cooked-dish-name');
+const $cookedDishHearts = document.querySelector('#cooked-hearts-healed');
+const $cookedStatusEffect = document.querySelector('#cooked-status-effect');
+const $finishedDishPicture = document.querySelector('#finished-dish');
+const $statusEffectStrength = document.querySelector('#cooked-status-strength');
+
+function calculateFinishedDish(selectedIngredientsArray) {
+  let totalHeartsHealed = 0;
+  let storedStatusEffect = '';
+  let statusCount = 0;
+  let statusStrength = '';
+  let dishType = '';
+  let mushroomBool = false;
+  let fruitBool = false;
+  let vegetableBool = false;
+  let cookedDishImgSrc = '';
+  // Heart Calculation
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    totalHeartsHealed += selectedIngredientsArray[i].hearts_recovered * 2;
+  }
+  // Status Effect Calculation
+  // first we store the first status effect we find.
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    if (selectedIngredientsArray[i].cooking_effect !== '') {
+      storedStatusEffect = selectedIngredientsArray[i].cooking_effect;
+      i = 6;
+    }
+    // then we check to see if that string matches the other ingredients in the array and count if it does, and assign confilcting status to storedStatusEffect if they dont
+    for (let i = 0; i < selectedIngredientsArray.length; i++) {
+      if (storedStatusEffect === selectedIngredientsArray[i].cooking_effect) {
+        statusCount++;
+      } else if (selectedIngredientsArray[i].cooking_effect !== '') {
+        storedStatusEffect = 'Conflicting Status';
+        i = 6;
+      }
+    }
+  }
+  // Using the statusCount varible we can determine the strength of the buff and place that string in the statusStrength variable
+  switch (statusCount) {
+    case 0:
+      statusStrength = '';
+      break;
+    case 1:
+    case 2:
+      statusStrength = 'level 1';
+      break;
+    case 3:
+    case 4:
+      statusStrength = 'level 2';
+      break;
+    case 5:
+      statusStrength = 'level 3';
+      break;
+    case 6:
+      statusStrength = '';
+      break;
+  }
+  // Calculate type of dish from type of ingredients used
+  // first store how many of each ingredient is in the dish
+  for (let i = 0; i < selectedIngredientsArray.length; i++) {
+    switch (selectedIngredientsArray[i].ingredientType) {
+      case 'mushroom':
+        mushroomBool = true;
+        break;
+      case 'vegetable':
+        vegetableBool = true;
+        break;
+      case 'fruit':
+        fruitBool = true;
+        break;
+    }
+  }
+  // Using this type info we can decide what dish this is. I'm not sure how to do this other than a million if statements. sorry.
+  if (fruitBool && mushroomBool && vegetableBool) {
+    dishType = 'Steamed Mushrooms';
+  } else if (mushroomBool && fruitBool) {
+    dishType = 'Fruit and Mushroom Mix';
+  } else if (mushroomBool && vegetableBool) {
+    dishType = 'Steamed Mushrooms';
+  } else if (fruitBool && vegetableBool) {
+    dishType = 'Steamed Fruit';
+  } else if (mushroomBool) {
+    dishType = 'Mushroom Skewer';
+  } else if (fruitBool) {
+    dishType = 'Simmered Fruit';
+  } else if (vegetableBool) {
+    dishType = 'Fried Wild Greens';
+  }
+
+  // Find the image that corrosponds to the type of dish.
+  switch (dishType) {
+    case 'Steamed Mushrooms':
+      cookedDishImgSrc = '/images/Steamed_Mushrooms.png';
+      break;
+    case 'Fruit and Mushroom Mix':
+      cookedDishImgSrc = '/images/Fruit_and_Mushroom_Mix.png';
+      break;
+    case 'Steamed Fruit':
+      cookedDishImgSrc = '/images/Steamed_Fruit.png';
+      break;
+    case 'Mushroom Skewer':
+      cookedDishImgSrc = '/images/Mushroom_Skewer.png';
+      break;
+    case 'Simmered Fruit':
+      cookedDishImgSrc = '/images/Simmered_Fruit.png';
+      break;
+    case 'Fried Wild Greens':
+      cookedDishImgSrc = '/images/Fried_Wild_Greens.png';
+      break;
+    default:
+      cookedDishImgSrc = '/images/No_Image_Symbol.png';
+  }
+  // set the value of status effect and strength to different values that look nicer if no status is found
+  if (
+    storedStatusEffect === 'Conflicting Status' ||
+    storedStatusEffect === ''
+  ) {
+    storedStatusEffect = 'No Effect';
+    statusStrength = 'None';
+  }
+  // Put all information into the elements on the page
+  $cookedDishName.textContent = dishType;
+  $cookedDishHearts.textContent = `Hearts Restored: ${totalHeartsHealed}`;
+  $cookedStatusEffect.textContent = `Status Effect: ${storedStatusEffect}`;
+  $statusEffectStrength.textContent = `Level of Effect: ${statusStrength}`;
+  $finishedDishPicture.setAttribute('src', cookedDishImgSrc);
+  return {
+    totalHeartsHealed,
+    storedStatusEffect,
+    statusCount,
+    dishType,
+    cookedDishImgSrc
+  };
 }
