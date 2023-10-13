@@ -1,5 +1,5 @@
 let storedIngredientsArray = [];
-
+const favoriteRecipeList = [];
 document.addEventListener('DOMContentLoaded', ingredientRequest);
 
 function ingredientRequest() {
@@ -159,6 +159,7 @@ function viewSwap(viewString) {
   renderCookingSelection(selectedIngredientsArray);
   updateHighlightedIngredients(selectedIngredientsArray);
   calculateFinishedDish(selectedIngredientsArray);
+  renderFavoriteRecipes(favoriteRecipeList);
 }
 
 // Function that only highlights selected ingredients in the ingredients array when the views are swapped.
@@ -323,4 +324,31 @@ function calculateFinishedDish(selectedIngredientsArray) {
     dishType,
     cookedDishImgSrc
   };
+}
+
+const $favoriteButton = document.querySelector('.favorite-button');
+$favoriteButton.addEventListener('click', addSelectedToFavorites);
+
+function addSelectedToFavorites(event) {
+  const currentSelected = [];
+  // currentSelected.push(...selectedIngredientsArray.map(obj => copy(obj)));
+  // console.log(currentSelected);
+  favoriteRecipeList.push(currentSelected);
+}
+
+const $recipeView = document.querySelector('.favorite-recipes');
+function renderFavoriteRecipes(favoriteRecipeList) {
+
+  if (favoriteRecipeList.length > 0) {
+    for (let i = 0; i < favoriteRecipeList.length; i++) {
+      const recipeEntry = $recipeView.children[i].children[1];
+      for (let a = 0; a < recipeEntry.children.length; a++) {
+        if (favoriteRecipeList[i][a] !== undefined) {
+          recipeEntry.children[a].textContent = favoriteRecipeList[i][a].name;
+        } else {
+          recipeEntry.children[a].textContent = 'No Ingredient';
+        }
+      }
+    }
+  }
 }

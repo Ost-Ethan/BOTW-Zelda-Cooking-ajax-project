@@ -1,122 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
       href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet">
-</head>
-<body>
-  <header>
-    <div class="header-container">
-      <div class="row">
-        <div class="column-full">
-          <h1>Hyrule Wildlife Cooking Guide</h1>
-        </div>
-      </div>
-      <div class="header-row">
-        <div class="column-one-third-header">
-          <button class="header-button favorites-header">Favorites</button>
-        </div>
-        <div class="column-one-third-header">
-          <button class="header-button list-of-ingredients-header" id="list-of-ingredients">List of Ingredients</button>
-        </div>
-        <div class="column-one-third-header">
-          <button class="header-button cooking-selection-header" id="cooking-selection">Cooking selection</button>
-        </div>
-      </div>
-    </div>
-  </header>
-  <main>
-    <div data-view="list-of-ingredients" class="">
-      <div class="list-of-ingredients">
+      rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
         <div class="row">
-        </div>
-      </div>
-    </div>
-    <div data-view="cooking-selection" class="hidden">
-      <div class="cooking-selection">
-        <div class="ingredient ing-1">
-          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
-          <div class="ingredient-label">Ingredient #1</div>
-          <div>Name of Ingredient</div>
-          <div>Heart Amount</div>
-          <div>Status Effect</div>
-        </div>
-        <div class="ingredient ing-2">
-          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
-          <div class="ingredient-label">Ingredient #2</div>
-          <div>Name of Ingredient</div>
-          <div>Heart Amount</div>
-          <div>Status Effect</div>
-        </div>
-        <div class="ingredient ing-3">
-          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
-          <div class="ingredient-label">Ingredient #3</div>
-          <div>Name of Ingredient</div>
-          <div>Heart Amount</div>
-          <div>Status Effect</div>
-        </div>
-        <div class="ingredient ing-4">
-          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
-          <div class="ingredient-label">Ingredient #4</div>
-          <div>Name of Ingredient</div>
-          <div>Heart Amount</div>
-          <div>Status Effect</div>
-        </div>
-        <div class="ingredient ing-5">
-          <div class="remove-icon"><i class="fa-regular fa-circle-xmark"></i></div>
-          <div class="ingredient-label">Ingredient #5</div>
-          <div>Name of Ingredient</div>
-          <div>Heart Amount</div>
-          <div>Status Effect</div>
-        </div>
-        <div class="finished-dish-container">
-          <div class="row">
-            <div class="column-half">
-              <div class="dish-name">
-                <div id="cooked-dish-name">Name of Dish</div>
-              </div>
-            </div>
-            <div class="column-half">
-              <div class="button-on-end">
-                <button class="favorite-button">Favorite</button>
-              </div>
-            </div>
+          <div class="column-full">
+            <h1>Hyrule Wildlife Cooking Guide</h1>
           </div>
-          <div class="row">
-            <div class="column-half">
-              <img id="finished-dish" src="/images/No_Image_Symbol.png" alt="image of cooked dish">
-            </div>
-            <div class="column-half">
-              <div class="flex-column">
-                <div id="cooked-hearts-healed"> Hearts Healed Amount</div>
-                <div id="cooked-status-effect"> Status Effect (if applicable)</div>
-                <div id="cooked-status-strength"></div>
-              </div>
-            </div>
+        </div>
+        <div class="header-row">
+          <div class="column-one-third-header">
+            <button
+              class="header-button favorites-header"
+              id="favorite-recipes">
+              Favorites
+            </button>
+          </div>
+          <div class="column-one-third-header">
+            <button
+              class="header-button list-of-ingredients-header"
+              id="list-of-ingredients">
+              List of Ingredients
+            </button>
+          </div>
+          <div class="column-one-third-header">
+            <button
+              class="header-button cooking-selection-header"
+              id="cooking-selection">
+              Cooking selection
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+    </header>
+    <main>
+      <div data-view="list-of-ingredients" class="">
+        <div class="list-of-ingredients">
+          <div class="row"></div>
+        </div>
+      </div>
+      <div data-view="cooking-selection" class="hidden">
+        <div class="cooking-selection">
+          <div class="ingredient ing-1">
+            <div class="remove-icon">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="ingredient-label">Ingredient #1</div>
+            <div>Name of Ingredient</div>
+            <div>Heart Amount</div>
+            <div>Status Effect</div>
+          </div>
+          <div class="ingredient ing-2">
+            <div class="remove-icon">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="ingredient-label">Ingredient #2</div>
+            <div>Name of Ingredient</div>
+            <div>Heart Amount</div>
+            <div>Status Effect</div>
+          </div>
+          <div class="ingredient ing-3">
+            <div class="remove-icon">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="ingredient-label">Ingredient #3</div>
+            <div>Name of Ingredient</div>
+            <div>Heart Amount</div>
+            <div>Status Effect</div>
+          </div>
+          <div class="ingredient ing-4">
+            <div class="remove-icon">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="ingredient-label">Ingredient #4</div>
+            <div>Name of Ingredient</div>
+            <div>Heart Amount</div>
+            <div>Status Effect</div>
+          </div>
+          <div class="ingredient ing-5">
+            <div class="remove-icon">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="ingredient-label">Ingredient #5</div>
+            <div>Name of Ingredient</div>
+            <div>Heart Amount</div>
+            <div>Status Effect</div>
+          </div>
+          <div class="finished-dish-container">
+            <div class="row">
+              <div class="column-half">
+                <div class="dish-name">
+                  <div id="cooked-dish-name">Name of Dish</div>
+                </div>
+              </div>
+              <div class="column-half">
+                <div class="button-on-end">
+                  <button class="favorite-button">Favorite</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-half">
+                <img
+                  id="finished-dish"
+                  src="/images/No_Image_Symbol.png"
+                  alt="image of cooked dish" />
+              </div>
+              <div class="column-half">
+                <div class="flex-column">
+                  <div id="cooked-hearts-healed">Hearts Healed Amount</div>
+                  <div id="cooked-status-effect">
+                    Status Effect (if applicable)
+                  </div>
+                  <div id="cooked-status-strength"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-view="favorite-recipes" class="hidden">
+        <div class="favorite-recipes">
+          <div class="favorite-recipe-1 row">
+            <h3>Favorite Recipe #1</h3>
+            <div class="row">
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="favorite-recipe-2 row">
+            <h3>Favorite Recipe #2</h3>
+            <div class="row">
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="favorite-recipe-3 row">
+            <h3>Favorite Recipe #3</h3>
+            <div class="row">
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="favorite-recipe-4 row">
+            <h3>Favorite Recipe #4</h3>
+            <div class="row">
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+              <div class="favorite-ingredient">
+                <div>Ingredient Name</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
